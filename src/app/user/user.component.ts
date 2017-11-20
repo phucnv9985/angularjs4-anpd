@@ -4,6 +4,8 @@ import { Http,Response,Headers } from '@angular/http';
 import { DataService } from '../services/data.service';
 import 'rxjs/add/operator/toPromise';
 
+import { Personal } from './personal';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -11,40 +13,40 @@ import 'rxjs/add/operator/toPromise';
 })
 export class UserComponent implements OnInit {
 
+  query:String=null;
   id:number;
   private header = new Headers({'Content-Type': 'application/json'});
+  users:Personal[];
+  constructor(private dataService:DataService,private http:Http) { 
+    console.log('contructor run...');
+    this.getallpersonal();
+  }
 
-  users:User[];
-  // constructor(private dataService:DataService) { 
-  //   console.log('contructor run...');
-  //   this.dataService.getUser().subscribe((users) =>{
-  //     console.log(users);
-  //     this.users=users;
-  //   });
-  // }
+  getallpersonal(){
+    this.dataService.getData().subscribe((users) =>{
+      console.log(users);
+      this.users=users;
+    });
+  }
   
-   constructor(private http:Http) { }
-
-  getData= function(){
-    this.http.get("http://localhost:8080/Application/personal").subscribe(
-      (res:Response)=>{
-        this.users=res.json();
-      }
-    )
+  searchperson(){
+    this.dataService.searchPerson(this.query).subscribe((users) =>{
+      console.log(users);
+      this.users=users;
+    });
   }
 
   deleteuser = function(id){
-    
     if(confirm('Are you sure???')){
-      const url =`${"http://localhost:8080/Application/personal"}/${id}`;
-      return this.http.delete(url,{header:this.header}).toPromise()
+      const url =`${"http://10.225.3.204:8080/Application/personal"}/${id}`;
+      return this.http.delete(url,{headers:this.header}).toPromise()
       .then(()=>{
-        this.getData();
+        this.getallpersonal();
       })
     }
   }
   ngOnInit() {
-    this.getData();
+    // this.getData();
   }
   
   
@@ -55,11 +57,11 @@ interface Address{
   city:string,
   state:string
 }
-interface User{
-  id_personal:number,
-  name_personal:string,
-  date_personal:String,
-  address_personal:String,
-  sex_personal:string,
-  numberphone_personal: number
-}
+// interface User{
+//   id_personal:number,
+//   name_personal:string,
+//   date_personal:String,
+//   address_personal:String,
+//   sex_personal:string,
+//   numberphone_personal: number
+// }

@@ -1,7 +1,15 @@
-<h2>Get All Task</h2>
+<div>
+  <div style="width:100%;background-color:#337ab7; height:40px;border-radius:5px 5px 5px 5px;" ><h3 style=" padding:8px;">Get All Task</h3></div>
 <!-- <button routerLink="/adduser">Add User</button> -->
 <table class="table">
   <tr>
+    <th class="bg-primary">
+      <a (click)="deleteSelectedTask()">
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-trash"></span> Trash 
+        </button>
+      </a>
+    </th>
     <th class="bg-primary">ID</th>
     <td class="bg-primary">NameTask</td>
     <td class="bg-primary">StartTask</td>
@@ -10,33 +18,28 @@
     <td class="bg-primary">Status</td>
     <td class="bg-primary">Detail</td>
     <td class="bg-primary"></td>
-    <td class="bg-primary"></td>
-    <td class="bg-primary"></td>
   </tr>
-  <tr>
-    <th scope="row"></th>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><a>Add Personal</a></td>
+  <tr *ngFor="let t of task|paginate:{itemsPerPage:10,currentPage:p}"  >
+    <input type="checkbox" [checked]= "isTaskSelected(t.id_task)" (change)="checkedTask($event,t.id_task)" >
+    <th scope="row">{{t.id_task}}</th>
+    <td><a [routerLink]="['detailtask',t.id_task]">{{t.name_task}}</a></td>
+    <td>{{t.startdate_task}}</td>
+    <td>{{t.enddate_task}}</td>
+    <td>{{t.status_task}}</td>
+    <td>{{t.detail_task}}</td>
     <td>
-      <a [routerLink]="['/task/updatetask/:id',usr.id_personal]">
+      <!-- <a >
         <button class="btn btn-primary btn-xs">
-          <!-- <span class="glyphicon glyphicon-pencil"></span> -->
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
-      </a>
-    </td>
-    <td (click)="deleteuser(usr.id_personal)">
+      </a> -->
       <a>
-        <button class="btn btn-danger btn-xs">
-          <!-- <span class="glyphicon glyphicon-trash"></span> -->
+        <button class="btn btn-danger btn-xs" (click)="deletetask(t.id_task)" >
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
       </a>
     </td>
   </tr>
 </table>
+</div>
 <pagination-controls (pageChange)="p=$event"></pagination-controls>

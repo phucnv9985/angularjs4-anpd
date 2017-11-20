@@ -1,73 +1,73 @@
-<!-- <h2>Update User</h2>
+<div>
+    <div style="width:100%;margin-left:10px;background-color:#337ab7; height:40px;border-radius:5px 5px 5px 5px;" ><h3 style=" padding:8px;">Update Personal {{id}}</h3></div>
 <h4 *ngIf="!isUpdate">User doen't exist!</h4>
-
-<form id="edituser" name="edituser" #userdata="ngForm" (ngSubmit)="edituser(userdata.value)">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <td colspan="2" class="bg-primary" > User update</td>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><label for="fullname">Fullname: </label></td>
-        <td><input type="text" name="fullname" id="fullname" placeholder="fullname" [(ngModel)]="data.fullname" ngModel></td>
-      </tr>
-      <tr>
-        <td><label for="date">Date: </label></td>
-        <td><input type="date" name="date" id="date" placeholder="date" [(ngModel)]="data.date" ngModel></td>
-      </tr>
-      <tr>
-        <td><label for="sex">Sex: </label></td>
-        <td><input type="text" name="sex" id="sex" placeholder="sex" [(ngModel)]="data.sex" ngModel></td>
-      </tr>
-      <tr>
-          <td></td>
-          <td><input type="submit" value="Update User"></td>
-        </tr>
-    </tbody>
-  </table>
-</form> -->
-<h2>Update Personal</h2>
-<form id="edituser" name="edituser" #userdata="ngForm" (ngSubmit)="edituser(userdata.value)">
-  <table class="table table-bordered" >
-    <thead>
-      <tr>
-          <th class="bg-primary" colspan="2">Update Personal</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><label for="name_personal">Fullname: </label></td>
-          <td><input type="text" name="name_personal" id="name_personal" placeholder="name_personal" [(ngModel)]="data.name_personal" ngModel required></td>
-        </tr>
-      </tbody>
-      <tbody>
-          <tr>
-              <td><label for="date_personal">Date: </label></td>
-              <td><input type="date" name="date_personal" id="date_personal" placeholder="date_personal" [(ngModel)]="data.date_personal" ngModel required ></td>
-          </tr>
-            <tr>
-              <td><label for="address_personal">Address: </label></td>
-              <td><textarea type="textarea" name="address_personal" id="address_personal" placeholder="address_personal" [(ngModel)]="data.address_personal" ngModel ></textarea><br></td>
-            </tr>
-            <tr>
-              <td><label for="sex_personal">Sex: </label></td>
-              <td><input type="text" name="sex_personal" id="sex_personal" placeholder="sex_personal" [(ngModel)]="data.sex_personal" ngModel ><br></td>
-            </tr>
-            <tr>
-              <td><label for="numberphone_personal">Phone Number: </label></td>
-              <td><input type="number" name="numberphone_personal" id="numberphone_personal" placeholder="numberphone_personal" [(ngModel)]="data.numberphone_personal" ngModel required ><br></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Update User"></td>
-              </tr>
-          </tbody>
-  </table>
-</form><h2>Update User</h2>
-<h4 *ngIf="!isUpdate">User doen't exist!</h4>
-
+<form id="edituser" name = "edituser" #userdata="ngForm" (ngSubmit)="edituser(userdata.value)" >
+    <div style="float:left;">
+      <div class="row">
+        <div class="col-lg-12">
+        <div class="col-lg-3">
+          <label for="form-control">Full name </label>
+          <input type="text" class="form-control" placeholder="Full name" name="name_personal"  maxlength="24" required minlength="4"  [(ngModel)]="data.name_personal"  #myName="ngModel" >
+          <div *ngIf="myName.errors && (myName.dirty || myName.touched)" class="alert alert-danger">
+            <div [hidden]="!myName.errors.required">
+                Name is required
+            </div>
+            <div [hidden]="!myName.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+            <div [hidden]="!myName.errors.maxlength">
+                Name cannot be more than 24 characters long.
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-2">
+          <label for="form-control">Date of birth </label>
+          <input type="date" class="form-control" ngModel [(ngModel)]="data.date_personal" name="date_personal" required>
+        </div>
+        <div class="col-lg-4">
+          <label for="address_personal">Address </label>
+          <textarea type="text" name="address_personal" class="form-control" id="address_personal" [(ngModel)]="data.address_personal" placeholder="Address" ngModel required></textarea>
+        </div>
+        <div class="col-lg-2">
+          <label for="form-control">Sex : </label><br>
+          <label style="margin-left:15px;">
+            <input type="radio" name="sex_personal" value="male" ngModel [(ngModel)]="data.sex_personal" required>Male</label>
+          <label style="margin-left:15px;">
+            <input type="radio" name="sex_personal" value="female" ngModel [(ngModel)]="data.sex_personal"  required>FeMale</label>
+          <label style="margin-left:15px;">
+            <input type="radio" name="sex_personal" value="other" ngModel [(ngModel)]="data.sex_personal" required >Other</label>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="col-lg-3">
+          <label for="email">Email </label>
+          <input type="email" class="form-control" name = "email" placeholder="example@gmail.com"  required   [(ngModel)]="data.email"  #myemail="ngModel" >
+          <div *ngIf="myemail.errors && (myemail.dirty || myemail.touched)" class="alert alert-danger">
+            <div [hidden]="!myemail.errors.required">
+                Email is required
+            </div> 
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <label for="position">Position</label>
+          <select class="form-control" name="position" [(ngModel)]="data.position" ngModel  required>
+            <option *ngFor="let pos of position" [value]="pos.value">{{pos.viewValue}}</option>
+          </select>
+        </div>
+  
+        <div class="col-lg-2">
+          <label for="numberphone_personal">Phone Number </label>
+          <input type="number" name="numberphone_personal" id="numberphone_personal" placeholder="numberphone_personal" [(ngModel)]="data.numberphone_personal" ngModel required >
+        </div>
+        <!-- <div class="col-lg-2">
+          <label for="image">Image</label>
+          <input type="text"   name="image"  [(ngModel)]="data.image" ngModel >
+        </div> -->
+        <div class="col-lg-12">
+          <input type="submit" class="btn btn-info" value="Edit" [disabled]="!userdata.valid" >
+        </div>
+      </div>
+    </div>
+    </div>
+  </form>
 <!--  -->

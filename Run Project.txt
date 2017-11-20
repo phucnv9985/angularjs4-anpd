@@ -1,0 +1,13 @@
+Run Angular
+
+import project By Visual Studio Code
+
+
+Open npm in Terminal Visual Studio Code
+
+
+1. npm install -g @angular/cli
+2. npm install
+3. npm install ngx-pagination --save
+4. npm start
+

@@ -1,0 +1,77 @@
+
+
+
+<div class="row">
+    <div style="width:100%;margin-left:10px;background-color:#337ab7; height:40px;border-radius:5px 5px 5px 5px;" ><h3 style=" padding:8px;">Detail Task Id {{id}}</h3></div>
+  <div class="col-lg-3">
+  <table>
+    <tr  >
+    <td>Name Task:</td>
+    <td><h4>{{tasks.name_task}}</h4></td>
+  </tr>
+  <tr  >
+      <td>Start Date Task:</td>
+      <td><h4>{{tasks.startdate_task}}</h4></td>
+    </tr>
+    <tr  >
+        <td>End Date Task:</td>
+        <td><h4>{{tasks.enddate_task}}</h4></td>
+      </tr>
+      <tr  >
+          <td>Status Task:</td>
+          <td><h4>{{tasks.status_task}}</h4></td>
+        </tr>
+        <tr  >
+            <td>Detail: </td>
+            <td><h4>{{tasks.detail_task}}</h4></td>
+          </tr>
+  </table>
+
+      Add Person:
+      <div *ngIf="!isclick"><button class="btn btn-success" (click)="isClick()"   >+</button></div>
+      <div *ngIf="isclick"><button class="btn btn-success" (click)="isClick()"   >-</button></div>
+  <div *ngIf="isclick">
+    <form action="" >
+      <select name="selectedvalue" id="selectedvalue" [(ngModel)]="selectedvalue">
+        <option  *ngFor="let per of personal" value="{{per.id_personal}}"  >id:{{per.id_personal}} Name:{{per.name_personal}}</option>
+      </select>
+      <button button class="btn btn-info" (click)="addpersonalbytask(tasks.id_task)"  >add</button>
+    </form>
+  </div>
+</div>
+<div class="col-lg-8" >
+    <table class="table">
+        <tr>
+          <th class="bg-primary">
+            <a (click)="deleteSelectedCheckBox()">
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-trash"></span> Trash 
+              </button>
+            </a>
+          </th>
+          <th class="bg-primary">ID</th>
+          <td class="bg-primary">Name Personal</td>
+          <td class="bg-primary">Date Of Birth</td>
+          <td class="bg-primary">Phone</td>
+          <td class="bg-primary">Email</td>
+          <td class="bg-primary">Position</td>
+          <td class="bg-primary"></td>
+        </tr>
+        <tr *ngFor="let per of personal1|paginate:{itemsPerPage:10,currentPage:p}" [class.highlighted]="isSelectedcheckbox(per.id_personal)" >
+          <td><input type="checkbox" [checked]= "isSelectedcheckbox(per.id_personal)" (change)="checkBox($event,per.id_personal)"></td>
+          <th scope="row">{{per.id_personal}}</th>
+          <td><a [routerLink]="['/task/idpersonal',per.id_personal]">{{per.name_personal}}</a></td>
+          <td>{{per.date_personal}}</td>
+          <td>{{per.numberphone_personal}}</td>
+          <td>{{per.email}}</td>
+          <td>{{per.position}}</td>
+          
+          <td>
+            <a >
+              
+            </a>
+          </td>
+        </tr>
+      </table>
+</div>
+</div>

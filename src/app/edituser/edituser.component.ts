@@ -16,6 +16,14 @@ export class EdituserComponent implements OnInit {
   data=[];
   users=[];
   userObj:any;
+  selectedValue: string;
+  position = [
+    {value: 'positon1', viewValue: 'Positon 1'},
+    {value: 'positon2', viewValue: 'Positon 2'},
+    {value: 'positon3', viewValue: 'Positon 3'},
+    {value: 'positon4', viewValue: 'Positon 4'},
+    {value: 'positon5', viewValue: 'Positon 5'}
+  ];
   private header = new Headers({'Content-Type': 'application/json'});
   constructor(private router:Router,private route:ActivatedRoute,private http:Http ) { }
   edituser(user){
@@ -24,9 +32,13 @@ export class EdituserComponent implements OnInit {
       "date_personal":user.date_personal,
       "address_personal":user.address_personal,
       "sex_personal":user.sex_personal,
-      "numberphone_personal": user.numberphone_personal
+      "numberphone_personal": user.numberphone_personal,
+      "email":user.email,
+      "create_date":Date.now(),
+      "position":user.position,
+      "image":user.image
     }
-    const url =`${"http://localhost:8080/Application/personal"}/${this.id}`;
+    const url ="http://10.225.3.204:8080/Application/personal/"+this.id;
     this.http.put(url, JSON.stringify(this.userObj), {headers:this.header}).toPromise()
     .then(()=>{
       this.router.navigate(['/']);//go to Home
@@ -39,7 +51,7 @@ export class EdituserComponent implements OnInit {
         this.id = +params['id'];
       }
     )
-    this.http.get("http://localhost:8080/Application/api/personal").subscribe(
+    this.http.get("http://10.225.3.204:8080/Application/personal").subscribe(
       (res:Response)=>{
         this.users=res.json();
         for(var i=0;i<this.users.length;i++){
