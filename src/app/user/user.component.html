@@ -1,0 +1,41 @@
+<h2>Get All Personal</h2>
+<!-- <button routerLink="/adduser">Add User</button> -->
+<table class="table">
+  <tr>
+    <th class="bg-primary">ID</th>
+    <td class="bg-primary">Fullname</td>
+    <td class="bg-primary">Date</td>
+    <!-- <td class="bg-primary">Address</td> -->
+    <td class="bg-primary">Sex</td>
+    <td class="bg-primary">Phone Number</td>
+    <td class="bg-primary">Address</td>
+    <td class="bg-primary"></td>
+    <td class="bg-primary"></td>
+  </tr>
+  <tr *ngFor="let usr of users|paginate:{itemsPerPage:15,currentPage:p}">
+    <th scope="row">{{usr.id_personal}}</th>
+     <td>{{usr.name_personal}}</td>
+    <td>{{usr.date_personal}}</td>
+    <td>{{usr.sex_personal}}</td>
+     <td>{{usr.numberphone_personal}}</td>
+    
+     <td>{{usr.address_personal}}</td>
+    <td>
+      <a [routerLink]="['/updatepersonal',usr.id_personal]">
+        <button class="btn btn-primary btn-xs">
+          <!-- <span class="glyphicon glyphicon-pencil"></span> -->
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+      </a>
+    </td>
+    <td (click)="deleteuser(usr.id_personal)">
+      <a>
+        <button class="btn btn-danger btn-xs">
+          <!-- <span class="glyphicon glyphicon-trash"></span> -->
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </a>
+    </td>
+  </tr>
+</table>
+<pagination-controls (pageChange)="p=$event"></pagination-controls>

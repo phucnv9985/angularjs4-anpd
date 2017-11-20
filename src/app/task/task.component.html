@@ -1,0 +1,42 @@
+<h2>Get All Task</h2>
+<!-- <button routerLink="/adduser">Add User</button> -->
+<table class="table">
+  <tr>
+    <th class="bg-primary">ID</th>
+    <td class="bg-primary">NameTask</td>
+    <td class="bg-primary">StartTask</td>
+    <!-- <td class="bg-primary">Address</td> -->
+    <td class="bg-primary">EndTask</td>
+    <td class="bg-primary">Status</td>
+    <td class="bg-primary">Detail</td>
+    <td class="bg-primary"></td>
+    <td class="bg-primary"></td>
+    <td class="bg-primary"></td>
+  </tr>
+  <tr>
+    <th scope="row"></th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><a>Add Personal</a></td>
+    <td>
+      <a [routerLink]="['/task/updatetask/:id',usr.id_personal]">
+        <button class="btn btn-primary btn-xs">
+          <!-- <span class="glyphicon glyphicon-pencil"></span> -->
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+      </a>
+    </td>
+    <td (click)="deleteuser(usr.id_personal)">
+      <a>
+        <button class="btn btn-danger btn-xs">
+          <!-- <span class="glyphicon glyphicon-trash"></span> -->
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </a>
+    </td>
+  </tr>
+</table>
+<pagination-controls (pageChange)="p=$event"></pagination-controls>

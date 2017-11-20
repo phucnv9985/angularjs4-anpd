@@ -1,0 +1,73 @@
+<!-- <h2>Update User</h2>
+<h4 *ngIf="!isUpdate">User doen't exist!</h4>
+
+<form id="edituser" name="edituser" #userdata="ngForm" (ngSubmit)="edituser(userdata.value)">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td colspan="2" class="bg-primary" > User update</td>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><label for="fullname">Fullname: </label></td>
+        <td><input type="text" name="fullname" id="fullname" placeholder="fullname" [(ngModel)]="data.fullname" ngModel></td>
+      </tr>
+      <tr>
+        <td><label for="date">Date: </label></td>
+        <td><input type="date" name="date" id="date" placeholder="date" [(ngModel)]="data.date" ngModel></td>
+      </tr>
+      <tr>
+        <td><label for="sex">Sex: </label></td>
+        <td><input type="text" name="sex" id="sex" placeholder="sex" [(ngModel)]="data.sex" ngModel></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td><input type="submit" value="Update User"></td>
+        </tr>
+    </tbody>
+  </table>
+</form> -->
+<h2>Update Personal</h2>
+<form id="edituser" name="edituser" #userdata="ngForm" (ngSubmit)="edituser(userdata.value)">
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+          <th class="bg-primary" colspan="2">Update Personal</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><label for="name_personal">Fullname: </label></td>
+          <td><input type="text" name="name_personal" id="name_personal" placeholder="name_personal" [(ngModel)]="data.name_personal" ngModel required></td>
+        </tr>
+      </tbody>
+      <tbody>
+          <tr>
+              <td><label for="date_personal">Date: </label></td>
+              <td><input type="date" name="date_personal" id="date_personal" placeholder="date_personal" [(ngModel)]="data.date_personal" ngModel required ></td>
+          </tr>
+            <tr>
+              <td><label for="address_personal">Address: </label></td>
+              <td><textarea type="textarea" name="address_personal" id="address_personal" placeholder="address_personal" [(ngModel)]="data.address_personal" ngModel ></textarea><br></td>
+            </tr>
+            <tr>
+              <td><label for="sex_personal">Sex: </label></td>
+              <td><input type="text" name="sex_personal" id="sex_personal" placeholder="sex_personal" [(ngModel)]="data.sex_personal" ngModel ><br></td>
+            </tr>
+            <tr>
+              <td><label for="numberphone_personal">Phone Number: </label></td>
+              <td><input type="number" name="numberphone_personal" id="numberphone_personal" placeholder="numberphone_personal" [(ngModel)]="data.numberphone_personal" ngModel required ><br></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update User"></td>
+              </tr>
+          </tbody>
+  </table>
+</form><h2>Update User</h2>
+<h4 *ngIf="!isUpdate">User doen't exist!</h4>
+
+<!--  -->
